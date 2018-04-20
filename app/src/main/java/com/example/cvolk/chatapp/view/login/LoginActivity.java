@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.cvolk.chatapp.R;
 import com.example.cvolk.chatapp.managers.AuthManager;
 import com.example.cvolk.chatapp.model.UserCredentials;
+import com.example.cvolk.chatapp.model.UserProfile;
 import com.example.cvolk.chatapp.view.users.UsersActivity;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +25,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     private LoginPresenter presenter;
     UserCredentials userCredentials;
+    private EditText etFirstName;
+    private EditText etLastName;
+    private EditText etLocation;
+    private EditText etAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +71,30 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void onRegister(View view) {
 
         getCredentials();
+        getProfileData();
 
         if (!email.equals("") && !password.equals("")) {
-            presenter.register(userCredentials);
+            UserProfile userProfile = new UserProfile(
+                    etFirstName.getText().toString(),
+                    etLastName.getText().toString(),
+                    etLocation.getText().toString(),
+                    etAge.getText().toString()
+            );
+
+            presenter.register(userCredentials, userProfile);
         }
         else {
             Toast.makeText(this, "Email and Password cannot be blank.", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void getProfileData() {
+
+        etFirstName = findViewById(R.id.etFirstName);
+        etLastName = findViewById(R.id.etLastName);
+        etLocation = findViewById(R.id.etLocation);
+        etAge = findViewById(R.id.etAge);
     }
 
     private void getCredentials() {
