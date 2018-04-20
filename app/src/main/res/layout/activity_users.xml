@@ -8,6 +8,17 @@
     tools:context=".view.users.UsersActivity"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Users"
+        android:textSize="25sp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvUsers" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

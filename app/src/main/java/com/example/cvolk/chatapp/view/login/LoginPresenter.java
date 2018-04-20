@@ -17,8 +17,6 @@ public class LoginPresenter implements LoginContract.Presenter, AuthManager.ILog
         authManager.attach(this);
         this.authManager = authManager;
         dbManager = new DBManager();
-
-
     }
 
     @Override
